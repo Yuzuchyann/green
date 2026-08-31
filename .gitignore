@@ -4,6 +4,9 @@
 # ============================================================
 .env
 .env.*
+# 下面这行必须单独占一行：gitignore 不支持行尾注释，
+# 写成「!.env.example  # 说明」会让整条规则失效
+!.env.example
 *.key
 secrets.json
 config_local.py

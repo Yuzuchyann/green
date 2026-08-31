@@ -1,6 +1,7 @@
-# YYYY-MM-DD · 第 N 周
+# weekNN · YYYY-MM-DD · 第 N 周
 
-> 复制这个文件，重命名为 `2026-09-07.md`，每周一篇。
+> 复制这个文件，重命名为 `weekNN-YYYY-MM-DD.md`（例：`week02-2026-09-07.md`），每周一篇。
+> 文件名加 `weekNN` 前缀，是为了和姐姐的工作记忆日志（`.workbuddy/memory/YYYY-MM-DD.md`）区分开。
 > 写得潦草没关系，但**不要补写**——补写的日志没有价值，也骗不了人。
 
 ---

@@ -341,8 +341,8 @@ def main():
                 d, b = fetch_one_stock_prices(sym, args.start, args.end)
                 db.mark_done(task, d + b)
             except Exception as e:
-                print(f"\n  {sym} 行情失败：{e}")
-                db.mark_done(task, 0)
+                # 失败【不】标 mark_done：留空让续跑自动重试，避免被 is_done 永久跳过
+                print(f"\n  {sym} 行情失败：{e}（不标记完成，续跑会重试）")
             _progress(i, len(codes), "行情")
             time.sleep(0.3)  # 对数据源温柔一点
         print()
@@ -357,8 +357,8 @@ def main():
                 f, b = fetch_one_stock_fina(sym)
                 db.mark_done(task, f + b)
             except Exception as e:
-                print(f"\n  {sym} 财务失败：{e}")
-                db.mark_done(task, 0)
+                # 失败【不】标 mark_done：留空让续跑自动重试，避免被 is_done 永久跳过
+                print(f"\n  {sym} 财务失败：{e}（不标记完成，续跑会重试）")
             _progress(i, len(codes), "财务")
             time.sleep(0.3)
         print()

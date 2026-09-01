@@ -115,7 +115,7 @@ Never commit them.
 
 | Month | Milestone |
 |---|---|
-| 2026-09 | Repository, literature matrix, Tushare pipeline |
+| 2026-09 | Repository, literature matrix, AkShare pipeline |
 | 2026-10 | Data pipeline — 100-firm pilot |
 | 2026-11 | `GW_rd` complete |
 | 2026-12 → 02 | `GW_text` complete (incl. human validation) |

@@ -57,12 +57,12 @@ def _ts_code(symbol: str) -> str:
     """把 AkShare 的纯数字代码转成 ts_code 格式（加 .SH/.SZ/.BJ）。"""
     symbol = str(symbol).strip().lower()
     symbol = symbol.replace("sh", "").replace("sz", "").replace("bj", "")
+    if symbol.startswith(("92", "43", "83", "87", "88")):
+        return f"{symbol}.BJ"  # 北交所（92x 为 2024 年起新代码段，必须先于 9->SH 判断）
     if symbol.startswith(("6", "9")):
         return f"{symbol}.SH"
     if symbol.startswith(("0", "3")):
         return f"{symbol}.SZ"
-    if symbol.startswith(("4", "8")):
-        return f"{symbol}.BJ"
     return symbol  # 兜底
 
 
@@ -164,14 +164,14 @@ def _fetch_valuation(symbol: str, start: str, end: str) -> pd.DataFrame:
 
 # ---------------------------------------------------------------- 单只股票：行情 + 估值
 def _sina_symbol(symbol: str) -> str:
-    """把纯数字代码转成新浪格式（sh600519 / sz000001 / bj8xxxxx）。"""
+    """把纯数字代码转成新浪格式（sh600519 / sz000001 / bj8xxxxx / bj92xxxx）。"""
     symbol = symbol.replace("sh", "").replace("sz", "").replace("bj", "")
+    if symbol.startswith(("92", "43", "83", "87", "88")):
+        return "bj" + symbol  # 北交所（92x 新代码段必须先于 9->sh 判断）
     if symbol.startswith(("6", "9")):
         return "sh" + symbol
     if symbol.startswith(("0", "3")):
         return "sz" + symbol
-    if symbol.startswith(("4", "8")):
-        return "bj" + symbol
     return symbol
 
 
@@ -190,7 +190,7 @@ def fetch_one_stock_prices(symbol: str, start: str, end: str) -> tuple:
                      start_date=start, end_date=end, adjust="")
     except Exception as e:
         print(f"\n  {symbol} 行情拉取失败：{e}")
-        return 0, 0
+        raise  # 必须上抛：吞掉异常会让外层误判"成功 0 行"并 mark_done，导致永久缺失
 
     if hist is not None and not hist.empty:
         h = hist.rename(columns={

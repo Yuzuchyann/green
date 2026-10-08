@@ -1,7 +1,7 @@
 """
 SQLite 数据库：建表与读写
 
-只存结构化数据（行情、财务、报告索引）。原始 PDF 放 data/raw，不进数据库。
+只存结构化数据（行情、财务、报告索引）。原始 PDF 放 Data/Raw，不进数据库。
 
 三条设计原则：
   1. 日期统一用 TEXT 存 'YYYYMMDD'，和 Tushare 返回格式对齐，也方便按字符串做范围查询
@@ -205,5 +205,5 @@ if __name__ == "__main__":
     path = init_db()
     print(f"数据库已就绪：{path}")
     for t in ("stocks", "daily", "daily_basic", "fina_indicator",
-              "balancesheet", "reports"):
+              "balancesheet", "Reports"):
         print(f"  {t:<16} {row_count(t):>10,} 行")

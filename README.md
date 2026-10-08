@@ -98,9 +98,9 @@ greenwashing-project/
 ├── README.md              # this file
 ├── RESEARCH_PLAN.md       # full research design (Chinese)
 ├── plan.html              # 10-month Gantt chart & monthly breakdown
-├── research-log/          # weekly research notes
-├── src/                   # code (to be built)
-├── data/                  # not tracked — see .gitignore
+├── RESEARCH_LOG/          # weekly research notes
+├── Src/                   # code (to be built)
+├── Data/                  # not tracked — see .gitignore
 │   ├── raw/               # downloaded reports
 │   └── processed/         # parsed output
 └── .gitignore             # secrets and data are excluded
@@ -125,5 +125,5 @@ Never commit them.
 | 2027-05 | Paper draft |
 | 2027-06 | Streamlit app + wrap-up |
 
-Weekly progress is recorded in [`research-log/`](research-log/) — written as it happens,
+Weekly progress is recorded in [`RESEARCH_LOG/`](RESEARCH_LOG/) — written as it happens,
 never backfilled.

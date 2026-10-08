@@ -10,15 +10,15 @@ from pathlib import Path
 
 # ---------------------------------------------------------------- 路径
 ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT / "data"
-RAW_DIR = DATA_DIR / "raw"              # 下载的原始 PDF
-PROCESSED_DIR = DATA_DIR / "processed"  # 数据库、解析后的文本
-LOG_DIR = ROOT / "logs"
+DATA_DIR = ROOT / "Data"
+RAW_DIR = DATA_DIR / "Raw"              # 下载的原始 PDF
+PROCESSED_DIR = DATA_DIR / "Processed"  # 数据库、解析后的文本
+LOG_DIR = ROOT / "Logs"
 
 for _d in (DATA_DIR, RAW_DIR, PROCESSED_DIR, LOG_DIR):
     _d.mkdir(parents=True, exist_ok=True)
 
-DB_PATH = PROCESSED_DIR / "greenwash.db"
+DB_PATH = PROCESSED_DIR / "GREENWASH.db"
 
 
 # ---------------------------------------------------------------- 研究区间
@@ -59,7 +59,7 @@ def get_tushare_token() -> str:
             "没找到 TUSHARE_TOKEN。\n"
             "  1. 注册并登录 https://tushare.pro\n"
             "  2. 个人主页 → 接口 TOKEN → 复制\n"
-            "  3. 把 .env.example 复制成 .env，写入：TUSHARE_TOKEN=你的token\n"
+            "  3. 把 !.env.example 复制成 .env，写入：TUSHARE_TOKEN=你的token\n"
             "注意：.env 已在 .gitignore 中，不会被提交。"
         )
     return token

@@ -12,10 +12,10 @@ Tushare 数据拉取
 daily_basic 都支持传 trade_date 一次拿回当天所有股票，一定要用这个。
 
 用法：
-    python src/fetch_tushare.py --limit-days 5    # 先跑 5 天，验证流程通不通
-    python src/fetch_tushare.py                   # 全量
-    python src/fetch_tushare.py --only fina       # 只拉财务
-    python src/fetch_tushare.py --reset           # 清空进度重跑（慎用）
+    python Src/fetchTushare.py --limit-days 5    # 先跑 5 天，验证流程通不通
+    python Src/fetchTushare.py                   # 全量
+    python Src/fetchTushare.py --only fina       # 只拉财务
+    python Src/fetchTushare.py --reset           # 清空进度重跑（慎用）
 """
 
 import argparse

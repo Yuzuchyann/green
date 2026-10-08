@@ -30,12 +30,12 @@ ann_date 说明：AkShare 免费接口不提供财报实际公告日，fina_indi
 的 ann_date 统一置 NULL，按报告期（end_date）对齐。这是已知局限，论文里必须披露。
 
 用法：
-    python src/fetch_akshare.py --limit-stocks 5          # 先跑 5 只，验证流程通不通
-    python src/fetch_akshare.py --start 20240101 --end 20241231 --limit-stocks 20
-    python src/fetch_akshare.py                            # 全市场（很慢，建议分批）
-    python src/fetch_akshare.py --only price               # 只拉行情+估值
-    python src/fetch_akshare.py --only fina                # 只拉财务
-    python src/fetch_akshare.py --reset                    # 清空进度重跑（数据不清）
+    python Src/fetchAkshare.py --limit-stocks 5          # 先跑 5 只，验证流程通不通
+    python Src/fetchAkshare.py --start 20240101 --end 20241231 --limit-stocks 20
+    python Src/fetchAkshare.py                            # 全市场（很慢，建议分批）
+    python Src/fetchAkshare.py --only price               # 只拉行情+估值
+    python Src/fetchAkshare.py --only fina                # 只拉财务
+    python Src/fetchAkshare.py --reset                    # 清空进度重跑（数据不清）
 """
 
 import argparse

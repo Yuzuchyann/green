@@ -7,7 +7,7 @@ sys.path.insert(0, "src")
 import akshare as ak
 import pandas as pd
 import db
-from fetch_akshare import _fetch_valuation, _ymd, _pick
+from fetchAkshare import _fetch_valuation, _ymd, _pick
 
 START, END = "20180101", "20261231"
 SYM, TS = "689009", "689009.SH"

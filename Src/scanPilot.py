@@ -15,14 +15,14 @@
 
 产出
 ----
-    data/processed/scan_pilot.csv    逐家明细（断点续跑依据）
-    data/raw/reports/*.pdf           下载的年报原件
-    reports/scan_ratio_report.md     汇总报告
+    Data/Processed/scan_pilot.csv    逐家明细（断点续跑依据）
+    Data/Raw/Reports/*.pdf           下载的年报原件
+    Reports/scanRatioReport.md     汇总报告
 
 用法
 ----
-    python src/scan_pilot.py --sample 10      # 小样本先验证
-    python src/scan_pilot.py --sample 100     # 正式试点（计划要求 100 家）
+    python Src/scanPilot.py --sample 10      # 小样本先验证
+    python Src/scanPilot.py --sample 100     # 正式试点（计划要求 100 家）
 """
 import argparse
 import csv
@@ -41,10 +41,10 @@ except ImportError:
     fitz = None
 
 ROOT = Path(__file__).resolve().parents[1]
-DB = ROOT / "data" / "processed" / "greenwash.db"
-RAW = ROOT / "data" / "raw" / "reports"
-CSV_OUT = ROOT / "data" / "processed" / "scan_pilot.csv"
-REPORT = ROOT / "reports" / "scan_ratio_report.md"
+DB = ROOT / "Data" / "Processed" / "GREENWASH.db"
+RAW = ROOT / "Data" / "Raw" / "Reports"
+CSV_OUT = ROOT / "Data" / "Processed" / "scan_pilot.csv"
+REPORT = ROOT / "Reports" / "scanRatioReport.md"
 
 TEXT_THRESHOLD = 200  # 页均字符数阈值，>= 视为文本版
 FIELDS = ["symbol", "name", "ts_code", "title", "ann_date", "pdf_url",
@@ -127,7 +127,7 @@ def probe_text_layer(path, max_pages=10):
 
 
 def write_report():
-    """读 CSV 明细，生成汇总报告 reports/scan_ratio_report.md。"""
+    """读 CSV 明细，生成汇总报告 Reports/scanRatioReport.md。"""
     rows = []
     with open(CSV_OUT, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
@@ -161,7 +161,7 @@ def write_report():
         "",
         "## 二、方法",
         "",
-        "1. **抽样**：从本地 `greenwash.db` 的 `stocks` 表（全市场 5,553 只）随机抽样，seed 固定可复现。",
+        "1. **抽样**：从本地 `GREENWASH.db` 的 `stocks` 表（全市场 5,553 只）随机抽样，seed 固定可复现。",
         "2. **定位年报**：AkShare `stock_zh_a_disclosure_report_cninfo`（巨潮资讯），取「2025 年年度报告」"
         "正文（排除摘要 / 英文版 / 更正版）。",
         "3. **下载**：巨潮静态资源直链 `static.cninfo.com.cn/finalpage/{公告日}/{公告ID}.PDF`。",
@@ -199,7 +199,7 @@ def write_report():
         "后续扩大检测页数复核。",
         "3. 本报告只覆盖**年报**；路径 C 还需要可持续发展报告本身，其扫描件比例需另行统计。",
         "",
-        f"> 生成脚本：`src/scan_pilot.py`　|　明细数据：`data/processed/scan_pilot.csv`",
+        f"> 生成脚本：`Src/scanPilot.py`　|　明细数据：`Data/Processed/scan_pilot.csv`",
     ]
     REPORT.write_text("\n".join(lines), encoding="utf-8")
     return len(ok), len(scan), ratio, len(fails)

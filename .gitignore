@@ -5,8 +5,8 @@
 .env
 .env.*
 # 下面这行必须单独占一行：gitignore 不支持行尾注释，
-# 写成「!.env.example  # 说明」会让整条规则失效
-!.env.example
+# 写成「!!.env.example  # 说明」会让整条规则失效
+!!.env.example
 *.key
 secrets.json
 config_local.py
@@ -34,10 +34,10 @@ env/
 # 原始报告几百 MB，解析结果几十 MB，推上去仓库会臃肿到没法用
 # 目录本身保留（靠 .gitkeep），内容忽略
 # ============================================================
-data/raw/*
-data/processed/*
-!data/raw/.gitkeep
-!data/processed/.gitkeep
+Data/Raw/*
+Data/Processed/*
+!Data/Raw/.gitkeep
+!Data/Processed/.gitkeep
 *.pdf
 *.db
 *.sqlite
